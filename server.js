@@ -17,6 +17,6 @@ var app = express();
 app.get('*', function(req,res) {
         return res.json(connected);
 });
-app.listen(8080, function() {
+app.listen(80, function() {
   console.log('listening');
 });
