@@ -19,7 +19,7 @@ app.get('/', function(req,res) {
   return res.json({'connected': connected, 'ready': readyToConnect});
 });
 app.post('/add-device', function(req,res) {
-  readyToConnect.push(req);
+  readyToConnect.push(req.body);
   return res.json({'response': 'added to collection'});
 });
 app.get('/remove-device', function(req,res) {
