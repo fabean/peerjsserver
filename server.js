@@ -12,13 +12,17 @@ server.on('disconnect', function (id) {
 
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var readyToConnect = [];
 
+var jsonParser = bodyParser.json();
+
+app.use(bodyParser.json());
 app.get('/', function(req,res) {
   return res.json({'connected': connected, 'ready': readyToConnect});
 });
-app.post('/add-device', function(req,res) {
+app.post('/add-device', jsonParser, function(req,res) {
   readyToConnect.push(req.body);
   return res.json({'response': 'added to collection'});
 });
