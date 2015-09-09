@@ -13,9 +13,17 @@ server.on('disconnect', function (id) {
 
 var express = require('express');
 var app = express();
+var readyToConnect = [];
 
-app.get('*', function(req,res) {
-        return res.json(connected);
+app.get('/', function(req,res) {
+  return res.json({'connected': connected, 'ready': readyToConnect});
+});
+app.on('/add-device', function(req,res) {
+  readyToConnect.push(req);
+  return res.json({'response': 'added to collection'});
+});
+app.on('/remove-device', function(req,res) {
+  return res.json({'response': 'removed from collection'});
 });
 app.listen(8080, function() {
   console.log('listening');
