@@ -18,7 +18,7 @@ var readyToConnect = [];
 app.get('/', function(req,res) {
   return res.json({'connected': connected, 'ready': readyToConnect});
 });
-app.get('/add-device', function(req,res) {
+app.post('/add-device', function(req,res) {
   readyToConnect.push(req);
   return res.json({'response': 'added to collection'});
 });
