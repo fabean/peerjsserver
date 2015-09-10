@@ -8,6 +8,7 @@ server.on('connection', function (id) {
 server.on('disconnect', function (id) {
   var idx = connected.indexOf(id); // only attempt to remove id if it's in the list
   if (idx !== -1) {connected.splice(idx, 1);}
+  // need to remove these people from readyToConnect
 });
 
 
