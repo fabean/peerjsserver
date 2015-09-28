@@ -33,7 +33,13 @@ app.post('/add-device', jsonParser, function(req,res) {
   readyToConnect.push(req.body);
   return res.json({'response': 'added to collection'});
 });
-app.get('/remove-device', function(req,res) {
+app.post('/remove-device', function(req,res) {
+  // loop through everyone in readyToConnect and compare ids.
+  for (i=0; i<readyToConnect.length; i++) {
+    if (readyToConnect[i].id === req.body.id) {
+      readyToConnect.splice(i, 1);
+    }
+  }
   return res.json({'response': 'removed from collection'});
 });
 app.listen(8080, function() {
